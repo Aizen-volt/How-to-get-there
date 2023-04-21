@@ -34,7 +34,7 @@ private:
 
 
     void IndexValid(int index) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index >= size - 1) {
             HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
             SetConsoleTextAttribute(hConsole, 0x04);
             std::cerr << "Could not get access to restricted memory!";
