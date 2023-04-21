@@ -104,7 +104,7 @@ public:
     }
 
 
-    friend std::ostream& operator<<(std::ostream& os, Vector& vector) {
+    friend std::ostream& operator<<(std::ostream& os, const Vector& vector) {
         os << "Capacity: " << vector.capacity << '\n';
         for (int i = 0; i < vector.size - 1; i++) {
             os << vector.array[i] << ' ';
