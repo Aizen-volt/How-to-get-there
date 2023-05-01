@@ -19,35 +19,41 @@ public:
         array = new T[capacity];
         front = 0;
         rear = -1;
-    }
+    
+}
 
 
     ~Queue() {
         delete[] array;
-    }
+    
+}
 
 
     void Enqueue(T& data) {
         size++;
         rear++;
         array[rear] = data;
-    }
+    
+}
 
 
     void Dequeue() {
         front++;
         size--;
-    }
+    
+}
 
 
     T& Peek() {
         return array[front];
-    }
+    
+}
 
 
     int Size() {
         return size;
-    }
+    
+}
 };
 
 #endif //NEWMAPPER_QUEUE_H
