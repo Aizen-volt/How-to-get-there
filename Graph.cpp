@@ -8,7 +8,6 @@ Graph::Graph(Map* map) {
     this->map = map;
     cities = new CityNameToPositionHash();
     ReadMap();
-    excessFactor = (map->height == 2048 && map->width == 30) ? 65536 : 8192;
     verticesCount = cityPositions.Size();
     InitAdjacencyList();
     if (map->roadCount > 0)
@@ -18,10 +17,12 @@ Graph::Graph(Map* map) {
 
 void Graph::InitAdjacencyList() {
     for (int i = 0; i < verticesCount; i++) {
-        Connection temp {i, i, 0};
+        Connection temp {i, i, 0
+};
         adjacencyList.Push_back();
         adjacencyList[i].PushBack(temp);
-    }
+    
+}
 }
 
 
@@ -29,22 +30,26 @@ void Graph::FindCityConnections() {
     bool** visited = new bool*[map->width];
     for (int i = 0; i < map->width; i++) {
         visited[i] = new bool[map->height];
-    }
+    
+}
 
     for (int i = 0; i < verticesCount; i++) {
         for (int j = 0; j < verticesCount; j++) {
             if (i == j)
                 continue;
 
-            QueueItem source {cityPositions[i].x, cityPositions[i].y, 0};
+            QueueItem source {cityPositions[i].x, cityPositions[i].y, 0
+};
             for (int x = 0; x < map->width; x++) {
                 for (int y = 0; y < map->height; y++) {
                     if (map->array[x][y] == '#' || (x == cityPositions[j].x && y == cityPositions[j].y))
                         visited[x][y] = false;
                     else
                         visited[x][y] = true;
-                }
-            }
+                
+}
+            
+}
             Queue<QueueItem> queue(map->width * map->height);
             queue.Enqueue(source);
             visited[source.x][source.y] = true;
@@ -53,45 +58,59 @@ void Graph::FindCityConnections() {
                 queue.Dequeue();
 
                 if (p.x == cityPositions[j].x && p.y == cityPositions[j].y) {
-                    Connection temp {i, j, p.distance};
+                    Connection temp {i, j, p.distance
+};
                     adjacencyList[i].PushBack(temp);
                     break;
-                }
+                
+}
 
 
                 //up
                 if (p.y - 1 >= 0 && !visited[p.x][p.y - 1]) {
                     visited[p.x][p.y - 1] = true;
-                    QueueItem temp{p.x, p.y - 1, p.distance + 1};
+                    QueueItem temp{p.x, p.y - 1, p.distance + 1
+};
                     queue.Enqueue(temp);
-                }
+                
+}
 
                 //down
                 if (p.y + 1 < map->height && !visited[p.x][p.y + 1]) {
                     visited[p.x][p.y + 1] = true;
-                    QueueItem temp{p.x, p.y + 1, p.distance + 1};
+                    QueueItem temp{p.x, p.y + 1, p.distance + 1
+};
                     queue.Enqueue(temp);
-                }
+                
+}
 
                 //left
                 if (p.x - 1 >= 0 && !visited[p.x - 1][p.y]) {
                     visited[p.x - 1][p.y] = true;
-                    QueueItem temp{p.x - 1, p.y, p.distance + 1};
+                    QueueItem temp{p.x - 1, p.y, p.distance + 1
+};
                     queue.Enqueue(temp);
-                }
+                
+}
 
                 //right
                 if (p.x + 1 < map->width && !visited[p.x + 1][p.y]) {
                     visited[p.x + 1][p.y] = true;
-                    QueueItem temp{p.x + 1, p.y, p.distance + 1};
+                    QueueItem temp{p.x + 1, p.y, p.distance + 1
+};
                     queue.Enqueue(temp);
-                }
-            }
-        }
-    }
+                
+}
+            
+}
+        
+}
+    
+}
     for (int i = 0; i < map->width; i++) {
         delete[] visited[i];
-    }
+    
+}
     delete[] visited;
 }
 
@@ -128,19 +147,26 @@ void Graph::FindCityName(int x, int y, String& cityName) {
                     while (x + offsetX > 0 && IsCityName(map->array[x + offsetX][y + offsetY])) {
                         cityName = map->array[x + offsetX][y + offsetY] + cityName;
                         offsetX--;
-                    }
-                }
+                    
+}
+                
+}
                     //check if first letter of name
                 else if (x + offsetX - 1 < 0 || !IsCityName(map->array[x + offsetX - 1][y + offsetY])) {
                     cityNameFound = true;
                     while (x + offsetX < map->width && IsCityName(map->array[x + offsetX][y + offsetY])) {
                         cityName.PushBack(map->array[x + offsetX][y + offsetY]);
                         offsetX++;
-                    }
-                }
-            }
-        }
-    }
+                    
+}
+                
+}
+            
+}
+        
+}
+    
+}
 }
 
 
@@ -155,21 +181,26 @@ void Graph::ReadMap() {
                 map->roadCount++;
             else if (cell == '*') {
                 //citiesCells->AddToMap(x, y, cityIndex);
-                Position temp {x, y};
+                Position temp {x, y
+};
                 cityPositions.Push_back(temp);
                 cityIndex++;
-            }
+            
+}
             map->array[x][y] = cell;
-        }
+        
+}
         getchar();
-    }
+    
+}
     int size = cityPositions.Size();
     for (int i = 0; i < size; i++) {
         String cityName;
         FindCityName(cityPositions[i].x, cityPositions[i].y, cityName);
         cities->AddToMap(cityName, cityPositions[i].x, cityPositions[i].y, i);
         cityNames.Push_back(cityName);
-    }
+    
+}
 }
 
 
@@ -187,19 +218,24 @@ void Graph::ReadFlightConnection() {
         if (mode == 0) {
             String temp1(token);
             sourceIndex = cities->Find(temp1);
-        }
+        
+}
         else if (mode == 1) {
             String temp2(token);
             destinationIndex = cities->Find(temp2);
-        }
+        
+}
         else {
             timeInt = atoi(token);
-        }
+        
+}
         token = strtok(NULL, " ");
         mode++;
-    }
+    
+}
 
-    Connection temp {sourceIndex, destinationIndex, timeInt};
+    Connection temp {sourceIndex, destinationIndex, timeInt
+};
     adjacencyList[sourceIndex].PushBack(temp);
 }
 
@@ -211,7 +247,8 @@ void Graph::Dijkstra(const String& source, const String& destination, int output
     if (sourceIndex == destinationIndex) {
         printf("0\n");
         return;
-    }
+    
+}
 
 
     PriorityQueue<Pair> priorityQueue;
@@ -221,10 +258,12 @@ void Graph::Dijkstra(const String& source, const String& destination, int output
     for (int i = 0; i < verticesCount; i++) {
         distances[i] = INT_MAX;
         visited[i] = false;
-    }
+    
+}
     distances[sourceIndex] = 0;
     visited[sourceIndex] = true;
-    Pair sourcePair {0, sourceIndex};
+    Pair sourcePair {0, sourceIndex
+};
     priorityQueue.Insert(sourcePair);
 
 
@@ -236,18 +275,22 @@ void Graph::Dijkstra(const String& source, const String& destination, int output
             printf("%d", distances[u]);
             if (output == 1) {
                 int i = prev[u];
-                Vector<int> trace(excessFactor);
+                Vector<int> trace;
                 while (i != sourceIndex) {
                     trace.Push_back(i);
                     i = prev[i];
-                }
+                
+}
                 for (int j = trace.Size() - 1; j >= 0; j--) {
                     printf(" %s", cityNames[trace[j]].GetArray());
-                }
-            }
+                
+}
+            
+}
             printf("\n");
             break;
-        }
+        
+}
 
         Node<Connection>* iterator = adjacencyList[u].head->next;
         while (iterator != nullptr) {
@@ -256,13 +299,17 @@ void Graph::Dijkstra(const String& source, const String& destination, int output
             if (!visited[v] && distances[v] > distances[u] + distance) {
                 prev[v] = u;
                 distances[v] = distances[u] + distance;
-                Pair temp {distances[v], v};
+                Pair temp {distances[v], v
+};
                 priorityQueue.Insert(temp);
-            }
+            
+}
             iterator = iterator->next;
-        }
+        
+}
         visited[u] = true;
-    }
+    
+}
     delete[] distances;
     delete[] prev;
     delete[] visited;
