@@ -6,10 +6,12 @@ typedef struct Pair {
     int distance, index;
     bool operator>(Pair& other) {
         return this->distance > other.distance;
-    }
+    
+}
     bool operator<(Pair& other) {
         return this->distance < other.distance;
-    }
+    
+}
 } Pair;
 
 
@@ -20,15 +22,18 @@ private:
 
     int Parent(int i) {
         return (i - 1) / 2;
-    }
+    
+}
 
     int LeftChild(int i) {
         return 2 * i + 1;
-    }
+    
+}
 
     int RightChild(int i) {
         return 2 * i + 2;
-    }
+    
+}
 
     void ShiftUp(int i) {
         if (i > 0 && heap[Parent(i)] > heap[i]) {
@@ -36,8 +41,10 @@ private:
             heap[Parent(i)] = heap[i];
             heap[i] = temp;
             ShiftUp(Parent(i));
-        }
-    }
+        
+}
+    
+}
 
     void ShiftDown(int i) {
         int min = i;
@@ -50,36 +57,34 @@ private:
             heap[min] = heap[i];
             heap[i] = temp;
             ShiftDown(min);
-        }
-    }
+        
+}
+    
+}
 
 public:
-    PriorityQueue() {
-
-    }
-
-    ~PriorityQueue() {
-
-    }
-
     void Insert(T& data) {
         heap.Push_back(data);
         ShiftUp(heap.Size() - 1);
-    }
+    
+}
 
     T& Top() {
         return heap[0];
-    }
+    
+}
 
     void Remove() {
         heap[0] = heap[heap.Size() - 1];
         heap.Pop_back();
         ShiftDown(0);
-    }
+    
+}
 
     [[nodiscard]] bool Empty() const {
         return heap.Size() == 0;
-    }
+    
+}
 };
 
 #endif //NEWMAPPER_PRIORITYQUEUE_H
