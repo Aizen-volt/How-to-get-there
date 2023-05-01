@@ -19,23 +19,29 @@ private:
         int length = name.GetLength();
         for (int i = 0; i < length; i++) {
             index += (i + 1) * name[i];
-        }
+        
+}
         return index;
-    }
+    
+}
 public:
     CityNameToPositionHash() {
         cities = new List<HashPair>[256 *  30];
-    }
+    
+}
 
     ~CityNameToPositionHash() {
         delete[] cities;
-    }
+    
+}
 
     void AddToMap(const String& name, int x, int y, int id) {
         int index = Hash(name);
-        HashPair temp {name, id};
+        HashPair temp {name, id
+};
         cities[index].PushBack(temp);
-    }
+    
+}
 
     int Find(const String& name) {
         int index = Hash(name);
@@ -44,9 +50,11 @@ public:
             if (current->data.name == name)
                 return current->data.id;
             current = current->next;
-        }
+        
+}
         return 0;
-    }
+    
+}
 };
 
 #endif //NEWMAPPER_CITYNAMETOPOSITIONHASH_H
