@@ -14,7 +14,7 @@ void InitMapArray(Map* map) {
 
 int main() {
     //for time measurement
-    auto begin = std::chrono::high_resolution_clock::now();
+    //auto begin = std::chrono::high_resolution_clock::now();
 
     Map map;
     scanf("%d %d\n", &map.width, &map.height);
@@ -26,7 +26,8 @@ int main() {
     scanf("%d\n", &flightConnectionsCount);
     for (int i = 0; i < flightConnectionsCount; i++) {
         graph.ReadFlightConnection();
-    }
+    
+}
 
     int queriesCount;
     scanf("%d\n", &queriesCount);
@@ -42,7 +43,8 @@ int main() {
             if (letter == ' ') {
                 mode++;
                 continue;
-            }
+            
+}
             if (mode == 0)
                 source.PushBack(letter);
             else if (mode == 1)
@@ -51,18 +53,21 @@ int main() {
                 outputMode[0] = letter;
                 getchar();
                 break;
-            }
-        }
+            
+}
+        
+}
         outputMode[1] = '\0';
         int output = atoi(outputMode);
         graph.Dijkstra(source, destination, output);
-    }
+    
+}
 
 
     //print program execution time
-    auto end = std::chrono::high_resolution_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    std::cout << "\n" << elapsed.count() * 1e-9;
+    //auto end = std::chrono::high_resolution_clock::now();
+    //auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    //std::cout << "\n" << elapsed.count() * 1e-9;
 
     return 0;
 }
