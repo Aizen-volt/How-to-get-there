@@ -1,5 +1,11 @@
 # City-mapper
-A rectangular map divided into squares is given. Each field on the map can be empty ('.'), be part of a road ('#'), or be a city ('*'). Moving through one field takes one minute. We can only move between fields adjacent by sides. Additionally, selected cities are connected by one-way air connections. \
+A rectangular map is given. Each field on the map can be:
+- empty '.'
+- part of a road '#'
+- city entrance '*'
+- part of city name 
+
+Movement is allowed between fields adjacent by sides only. Additionally, selected cities are connected by one-way air connections. \
 The task is to return the shortest path between two cities given in query:
 > source destination [0/1]
 #####
