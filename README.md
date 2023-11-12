@@ -17,13 +17,13 @@ The task is to return the shortest path between two cities given in query:
 - it is however recommended to implement them on your own
 
 ## Structures implemented
-- string
-- vector array
+- graph (adjacency list implementation)
+- priority queue (min-heap implementation)
+- chained hash array
+- queue (list implementation)
 - linked list
-- queue - for Breadth First Search
-- priority queue (using min-heap) - for Dijkstra's Algorithm
-- chained hash table - for quick identifying city index based on its name
-- graph - adjacency list implementation
+- vector
+- string
 
 ## Performance
 Overall performance is quite satisfying e.g. finding connections between two amongst 2500 cities with 3123750 air connections took approximately 3.8 seconds (time for parsing map and adding connections to adjacency list included)
