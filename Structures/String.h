@@ -158,7 +158,7 @@ public:
         char* newArray = new char[size + 1];
         newArray[0] = c;
         strcpy(newArray + 1, array);
-        newArray[size + 1] = '\0';
+        newArray[size] = '\0';
 
         delete[] array;
         array = newArray;
@@ -280,7 +280,7 @@ public:
 
 
     friend std::istream& operator>>(std::istream& is, String& str) {
-        char buffer[256];
+        char buffer[3000];
         is >> buffer;
         str = String(buffer);
         return is;
