@@ -28,6 +28,22 @@ The task is to return the shortest path between two cities given in query:
 ## Performance
 Overall performance is quite satisfying e.g. finding connections between two amongst 2500 cities with 3123750 air connections took approximately 3.8 seconds (time for parsing map and adding connections to adjacency list included)
 
+## Tests description
+- 1.in  - example
+- 2.in  - minimum
+- 3.in  - label reading correctness
+- 4.in  - correctness
+- 5.in  - simple test on a grid
+- 6.in  - small fan
+- 7.in  - small path
+- 8.in  - small complete graph
+- 9.in  - large map, few cities
+- 10.in - large map, few cities
+- 11.in - fan, array implementation may not fit in time
+- 12.in - spiral, recursion implementation of search overflows the stack
+- 13.in - long path, array implementation may not fit in time
+- 14.in - many edges
+
 ## Example
 ### Input:
 ```
