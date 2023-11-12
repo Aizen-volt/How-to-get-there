@@ -166,7 +166,7 @@ public:
 
         // Dijkstra's algorithm
         while (!priorityQueue.empty()) {
-            // pick vertex with smallest distance
+            // pick vertex with the smallest distance
             int u = priorityQueue.peek().second;
             priorityQueue.pop();
 
