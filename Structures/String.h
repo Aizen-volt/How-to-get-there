@@ -2,7 +2,7 @@
 #define HOW_TO_GET_THERE_STRING_H
 
 #include <iostream>
-#include <cstring>
+#include <string.h>
 #include <stdexcept>
 
 class String {
