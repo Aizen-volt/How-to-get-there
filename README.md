@@ -1,4 +1,4 @@
-# City-mapper
+# How-to-get-there
 A rectangular map is given. Each field on the map can be:
 - empty '.'
 - part of a road '#'
