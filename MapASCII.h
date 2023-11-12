@@ -14,11 +14,6 @@ private:
     }
 
 
-    [[nodiscard]] bool isOutOfBound(int x, int y) const {
-        return x < 0 || x >= width || y < 0 || y >= height;
-    }
-
-
     [[nodiscard]] String findCityName(int x, int y) const {
         String name;
 
@@ -122,6 +117,11 @@ public:
             cityNames.pushBack(cityName);
             cityNameToId.add(cityName, i);
         }
+    }
+
+
+    [[nodiscard]] bool isOutOfBound(int x, int y) const {
+        return x < 0 || x >= width || y < 0 || y >= height;
     }
 };
 
